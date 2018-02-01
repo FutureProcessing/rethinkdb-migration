@@ -1,5 +1,7 @@
 # rethinkdb-migration
 
+[![Build Status](https://travis-ci.org/FutureProcessing/rethinkdb-migration.svg?branch=master)](https://travis-ci.org/FutureProcessing/rethinkdb-migration)
+
 RethinkDB migration tool allows you to handle database migration for your Node application.
 Additionally you can define individual migration for stage, uat, etc.
 Rethinkdb-migration will take care of running proper migration script from core directory and indicated implementation.
