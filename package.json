@@ -1,10 +1,13 @@
 {
   "name": "rethinkdb-migration",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "RethinkDB migration tool allows you to handle database migration for your Node application.",
-  "author": "Future Processing",
-  "private": true,
+  "author": "Future Processing Sp. z o.o.",
+  "private": false,
   "main": "rethinkdb-migration.js",
+  "engines": {
+    "node": ">=8.9.*"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:FutureProcessing/rethinkdb-migration.git"
