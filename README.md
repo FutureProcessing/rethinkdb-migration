@@ -12,7 +12,7 @@ Rethinkdb-migration will take care of running proper migration script from core 
 
 Installation is done using the npm install command:
 ```
-npm install -g rethinkdb-migrate
+npm install rethinkdb-migrate
 ```
 
 ## Configuration
