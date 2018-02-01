@@ -6,9 +6,14 @@ RethinkDB migration tool allows you to handle database migration for your Node a
 Additionally you can define individual migration for stage, uat, etc.
 Rethinkdb-migration will take care of running proper migration script from core directory and indicated implementation.
 
+**IMPORTANT**: You need Node >= 8.9.4 for this package.
+
 ## Installation
 
-
+Installation is done using the npm install command:
+```
+npm install -g rethinkdb-migrate
+```
 
 ## Configuration
 
