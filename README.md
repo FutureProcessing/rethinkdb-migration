@@ -134,6 +134,6 @@ In table **toolRethingDBMigrate** you can see migration history.
 Method | Parameters type | Description
 ---|---|---|
 getReQl() | | Returns rethinkdbdash object.
-closeConnection() | | Closes connection to database. It is an alias to `this.getReQL().getPoolMaster().drain();`
+closeConnection() | | Closes connection to database.
 createDatabase(databaseName) | {String} databaseName | Creates database based on given name.
 createMissingTables(tablesName) | {Array} tablesName | Creates tables based on given table names.
