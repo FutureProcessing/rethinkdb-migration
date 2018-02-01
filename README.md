@@ -16,17 +16,17 @@ You may configure rethinkdb-migration in two ways: by environment variables or p
 
 ##### Database configuration
 ```
-TRM_DB_HOST,<br>
-TRM_DB_PORT,<br>
-TRM_DB_USER,<br>
-TRM_DB_PASS,<br>
-TRM_DB_NAME,<br>
+TRM_DB_HOST,
+TRM_DB_PORT,
+TRM_DB_USER,
+TRM_DB_PASS,
+TRM_DB_NAME,
 ```
 ##### Tool configuration
 ```
-TRM_DB_TABLE, specify table where rethinkdb-migration keeps migration history<br>
-TRM_DIR_MIGRATE,  specify directory where rethinkdb-migration keeps migration scripts<br>
-TRM_DIR_IMPLEMENTATION, specify directory with additional implementation e.g STAGE, UAT<br>
+TRM_DB_TABLE, specify table where rethinkdb-migration keeps migration history
+TRM_DIR_MIGRATE, specify directory where rethinkdb-migration keeps migration scripts
+TRM_DIR_IMPLEMENTATION, specify directory with additional implementation e.g STAGE, UAT
 ```
 
 ### Configuration file
@@ -48,8 +48,8 @@ Example file with default data you can find at **config/config-default.json**
 
 ## Usage
 
-Lets create migration script with query which creates new table in database.
-Thus, we use config file to provide configuration for rethingdb-migration.
+Let's create migration script with query which creates new table in database.
+Thus, we use config file to provide configuration for rethinkdb-migration.
 ##### Define following data in *config-example.json*
 ```javascript
 {
@@ -115,9 +115,9 @@ Created migration can be launched by the command
 ```
 node rethinkdb-migration --config="./../config/config-default.json"
 ```
-When you run above command table exampleTable will be create in database which you defined in configuration file.
+When you run above command table **exampleTable** will be create in database which you defined in configuration file.
 
-In table toolRethingDBMigrate you can see migration history.
+In table **toolRethingDBMigrate** you can see migration history.
 ```javascript
 {
 
@@ -129,7 +129,7 @@ In table toolRethingDBMigrate you can see migration history.
 }
 ```
 
-Helpers
+#### Helpers
 
 Method | Parameters type | Description
 ---|---|---|
