@@ -1,0 +1,10 @@
+{
+  "DB_HOST": "test_host",
+  "DB_PORT": "test_port",
+  "DB_USER": "test_user",
+  "DB_PASS": "test_pass",
+  "DB_NAME": "test_db_name",
+  "DB_TABLE": "test_db_table",
+  "DIR_MIGRATE": "test_dir_migrate",
+  "DIR_IMPLEMENTATION": "test_dir_implementation"
+}

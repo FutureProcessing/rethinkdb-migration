@@ -1,0 +1,10 @@
+{
+  "DB_HOST": "192.168.10.30",
+  "DB_PORT": "28015",
+  "DB_USER": "",
+  "DB_PASS": "",
+  "DB_NAME": "rethinkMigrateTest",
+  "DB_TABLE": "toolRethingDBMigrate",
+  "DIR_MIGRATE": "./migrate",
+  "DIR_IMPLEMENTATION": "stage"
+}
