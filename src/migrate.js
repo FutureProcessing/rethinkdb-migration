@@ -39,7 +39,7 @@ class Migrate {
         }
         console.info('starting migration ' + file.name);
 
-        const migrateScript = require('../' + file.path + '/' + file.name);
+        const migrateScript = require(file.path + '/' + file.name);
         migrateScript.up(this.rethink, this);
     }
 
