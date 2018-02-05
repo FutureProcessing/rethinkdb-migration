@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git@github.com:FutureProcessing/rethinkdb-migration.git"
   },
+  "bin" : {
+    "rethinkdb-migration": "./bin/rethinkdb-migration"
+  },
   "dependencies": {
     "lodash": "^4.17.4",
     "rethinkdbdash": "^2.3.31",
