@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git@github.com:FutureProcessing/rethinkdb-migration.git"
   },
-  "bin" : {
+  "bin": {
     "rethinkdb-migration": "./bin/rethinkdb-migration"
   },
   "dependencies": {
