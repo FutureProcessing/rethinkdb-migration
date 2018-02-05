@@ -1,5 +1,3 @@
-#! /usr/bin/env node
-
 const _ = require('lodash');
 const commandLineArgs = require('command-line-args');
 const fs = require('fs');
