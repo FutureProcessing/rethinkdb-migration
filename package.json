@@ -13,7 +13,6 @@
     "url": "git@github.com:FutureProcessing/rethinkdb-migration.git"
   },
   "dependencies": {
-    "compare-versions": "^3.1.0",
     "lodash": "^4.17.4",
     "rethinkdbdash": "^2.3.31",
     "command-line-args": "^5.0.1"
