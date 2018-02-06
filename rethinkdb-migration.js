@@ -95,7 +95,7 @@ function createScript(scriptName, config) {
 
     parsedName += '-' + (scriptName.indexOf('.js') === -1 ? scriptName + '.js' : scriptName);
 
-    fs.createReadStream('./src/' + TEMPLATE_FILE_NAME).pipe(fs.createWriteStream(config.getDirMigrate() + '/core/' + parsedName));
+    fs.createReadStream(__dirname + '/src/' + TEMPLATE_FILE_NAME).pipe(fs.createWriteStream(config.getDirMigrate() + '/core/' + parsedName));
 }
 
 const options = commandLineArgs(optionDefinitions);
