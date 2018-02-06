@@ -99,7 +99,7 @@ function createScript(scriptName, config) {
 }
 
 const options = commandLineArgs(optionDefinitions);
-const config = (options.config) ? configFileFactory(options.config) : configEnvFactory();
+const config = (options.config) ? configFileFactory(process.cwd() + '/' + options.config) : configEnvFactory();
 
 if (options.create && options.script) {
     createScript(options.script, config);
