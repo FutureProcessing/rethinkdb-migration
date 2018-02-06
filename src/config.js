@@ -35,7 +35,7 @@ class Config {
     }
 
     getDirMigrate() {
-        return this.dirMigrate;
+        return process.cwd() + '/' + this.dirMigrate;
     }
 
     getDirImplementation() {

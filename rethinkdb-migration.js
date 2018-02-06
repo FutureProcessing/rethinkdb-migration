@@ -95,11 +95,11 @@ function createScript(scriptName, config) {
 
     parsedName += '-' + (scriptName.indexOf('.js') === -1 ? scriptName + '.js' : scriptName);
 
-    fs.createReadStream('./src/' + TEMPLATE_FILE_NAME).pipe(fs.createWriteStream(config.getDirMigrate() + '/core/' + parsedName));
+    fs.createReadStream(__dirname + '/src/' + TEMPLATE_FILE_NAME).pipe(fs.createWriteStream(config.getDirMigrate() + '/core/' + parsedName));
 }
 
 const options = commandLineArgs(optionDefinitions);
-const config = (options.config) ? configFileFactory(options.config) : configEnvFactory();
+const config = (options.config) ? configFileFactory(process.cwd() + '/' + options.config) : configEnvFactory();
 
 if (options.create && options.script) {
     createScript(options.script, config);
