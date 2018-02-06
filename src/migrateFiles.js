@@ -12,14 +12,16 @@ class MigrateFiles {
         const corePath = this.path + '/' + DIR_CORE;
         const implementationPath = this.path + '/' + this.implementation;
 
-        const coreFileList = _.map(fs.readdirSync(corePath), function (fileName) {
+        let list = _.pull(fs.readdirSync(corePath), '.gitkeep');
+        const coreFileList = _.map(list, function (fileName) {
             return {
                 name: fileName,
                 path: corePath
             };
         });
 
-        const implementationFileList = _.map(fs.readdirSync(implementationPath), function (fileName) {
+        list = _.pull(fs.readdirSync(implementationPath), '.gitkeep');
+        const implementationFileList = _.map(list, function (fileName) {
             return {
                 name: fileName,
                 path: implementationPath
