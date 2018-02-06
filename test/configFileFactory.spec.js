@@ -29,7 +29,7 @@ describe('Config file factory', () => {
         expect(Config.getDbTable()).to.equal('test_db_table');
     });
     it('Should return given migrate directory', () => {
-        expect(Config.getDirMigrate()).to.equal('test_dir_migrate');
+        expect(Config.getDirMigrate()).to.equal(process.cwd() + '/' + 'test_dir_migrate');
     });
     it('Should return given implementation directory', () => {
         expect(Config.getDirImplementation()).to.equal('test_dir_implementation');
