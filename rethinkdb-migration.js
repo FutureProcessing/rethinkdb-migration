@@ -9,6 +9,7 @@ const MigrateDao = require('./src/migrateDao');
 const MigrateVersion = require('./src/migrateVersion');
 const configEnvFactory = require('./src/configEnvFactiory');
 const configFileFactory = require('./src/configFileFactory');
+const REGEX_VERSION = /\d+_\d+/;
 
 const TEMPLATE_FILE_NAME = 'migrateScriptTpl.js';
 
@@ -60,8 +61,8 @@ async function initMigrate(config) {
         const model = await migrateDao.getLast();
         const version = model && model.getVersion();
 
-        const migrateFiles = new MigrateFiles(config.getDirMigrate(), config.getDirImplementation());
-        const migrateVersion = new MigrateVersion(version);
+        const migrateFiles = new MigrateFiles(config.getDirMigrate(), config.getDirImplementation(), REGEX_VERSION);
+        const migrateVersion = new MigrateVersion(version, REGEX_VERSION);
 
         const migrate = new Migrate(rethink, migrateFiles, migrateVersion, migrateDao);
         migrate.up();

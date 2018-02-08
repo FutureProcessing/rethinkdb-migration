@@ -5,6 +5,7 @@
 const MigrateVersion = require('./../src/migrateVersion');
 const expect = require('chai').expect;
 const itParam = require('mocha-param').itParam;
+const REGEX_VERSION = /\d+_\d+/;
 
 // given
 const expectedVersion = [
@@ -42,25 +43,25 @@ const expectedComparisonState = [
 describe('Migrate version', () => {
     itParam('Should return given migrate version', expectedVersion, (assertion) => {
         // when
-        let migrateVersion = new MigrateVersion(assertion.version);
+        let migrateVersion = new MigrateVersion(assertion.version, REGEX_VERSION);
         // then
         expect(migrateVersion.getVersion()).to.equal(assertion.result);
     });
     itParam('Should return parsed version from string', expectedParsed, (assertion) => {
         // when
-        let migrateVersion = new MigrateVersion('123_456');
+        let migrateVersion = new MigrateVersion('123_456', REGEX_VERSION);
         // then
         expect(migrateVersion.getParsedVersionFromString(assertion.version)).to.equal(assertion.result);
     });
     itParam('Should return version from string', expectedStringVersion, (assertion) => {
         // when
-        let migrateVersion = new MigrateVersion('123_456');
+        let migrateVersion = new MigrateVersion('123_456', REGEX_VERSION);
         // then
         expect(migrateVersion.getVersionFromString(assertion.filename)).to.equal(assertion.result);
     });
     itParam('Should return comparison state', expectedComparisonState, (assertion) => {
         // when
-        let migrateVersion = new MigrateVersion(assertion.version);
+        let migrateVersion = new MigrateVersion(assertion.version, REGEX_VERSION);
         // then
         expect(migrateVersion.compare(assertion.filename)).to.equal(assertion.result);
     });
