@@ -9,6 +9,7 @@ const expect = require('chai').expect;
 const MigrateFiles = require('./../src/migrateFiles');
 
 const FAKE_PATH = 'fake/path';
+const REGEX_VERSION = /\d+_\d+/;
 
 // given
 const coreMigrationFiles = [
@@ -43,7 +44,7 @@ describe('Migrate files', () => {
 
     // then
     it('should return files list', () => {
-        const migrateFiles = new MigrateFiles(FAKE_PATH, 'stage');
+        const migrateFiles = new MigrateFiles(FAKE_PATH, 'stage', REGEX_VERSION);
         const expectation = [
             { name: coreMigrationFiles[0], path: FAKE_PATH + '/core' },
             { name: coreMigrationFiles[1], path: FAKE_PATH + '/core' },
