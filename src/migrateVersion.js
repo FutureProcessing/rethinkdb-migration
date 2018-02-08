@@ -1,12 +1,13 @@
 const _ = require('lodash');
-const REGEX_VERSION = /\d+_\d+/;
 
 class MigrateVersion {
     /**
      * @param {string} version Migrate version in format `\d+_\d+`. Example: 1_1
+     * @param {RegExp} filePattern
      */
-    constructor(version) {
+    constructor(version, filePattern) {
         this.version = version;
+        this.filePattern = filePattern;
         this.parsedVersion = this.getParsedVersionFromString(this.version);
     }
 
@@ -40,7 +41,7 @@ class MigrateVersion {
      * @return {string}
      */
     getVersionFromString(name) {
-        const match = name.match(REGEX_VERSION);
+        const match = name.match(this.filePattern);
         return _.first(match);
     }
     /**
@@ -52,7 +53,7 @@ class MigrateVersion {
             return 0;
         }
 
-        const match = name.match(REGEX_VERSION);
+        const match = name.match(this.filePattern);
         return parseInt(_.first(match).replace('_', ''));
     }
 }
