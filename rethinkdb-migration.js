@@ -16,14 +16,16 @@ const TEMPLATE_FILE_NAME = 'migrateScriptTpl.js';
 const optionDefinitions = [
     {name: 'create', type: Boolean, alias: 'c'},
     {name: 'script', type: String, alias: 's'},
-    {name: 'config', type: String}
+    {name: 'config', type: String},
+    {name: 'setup', type: Boolean},
 ];
 
 /**
  * @param {Config} config
+ * @param {boolean} isSetup
  * @return {Promise<string>}
  */
-async function initMigrate(config) {
+async function initMigrate(config, isSetup) {
     let rethink = null;
 
     try {
@@ -66,11 +68,17 @@ async function initMigrate(config) {
 
         const migrate = new Migrate(rethink, migrateFiles, migrateVersion, migrateDao);
 
-        migrate.on(Migrate.EVENT_END_MIGRATION(), function () {
+        if (isSetup) {
+            await migrate.setup();
+            console.log('added migration stats to existing database');
             rethink.closeConnection();
-        });
+        } else {
+            migrate.on(Migrate.EVENT_END_MIGRATION(), function () {
+                rethink.closeConnection();
+            });
 
-        migrate.up();
+            migrate.up();
+        }
     }
     catch (error) {
         console.error(error.message);
@@ -110,5 +118,5 @@ const config = (options.config) ? configFileFactory(process.cwd() + '/' + option
 if (options.create && options.script) {
     createScript(options.script, config);
 } else {
-    initMigrate(config).catch(console.error);
+    initMigrate(config, !_.isUndefined(options.setup)).catch(console.error);
 }

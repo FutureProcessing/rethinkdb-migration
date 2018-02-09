@@ -33,6 +33,22 @@ class Migrate extends EventEmiter {
         this.consumeQueue();
     }
 
+    async setup() {
+        const file = _.last(this.migrateFiles.getList());
+
+        if (this.migrateVersion.compare(file.name) !== 1) {
+            return Promise.reject(Error('Migration stats exists'));
+        }
+
+        const migrateModel = new MigrateModel();
+        migrateModel
+            .setVersion(this.migrateVersion.getVersionFromString(file.name))
+            .setFileName(file.name)
+            .setDate(new Date());
+        await this.migrateDao.save(migrateModel);
+        return Promise.resolve();
+    }
+
     consumeQueue() {
         const file = _.first(this.migrateQueue);
         if (_.isUndefined(file)) {
