@@ -65,6 +65,11 @@ async function initMigrate(config) {
         const migrateVersion = new MigrateVersion(version, REGEX_VERSION);
 
         const migrate = new Migrate(rethink, migrateFiles, migrateVersion, migrateDao);
+
+        migrate.on(Migrate.EVENT_END_MIGRATION(), function () {
+            rethink.closeConnection();
+        });
+
         migrate.up();
     }
     catch (error) {

@@ -1,7 +1,8 @@
 const _ = require('lodash');
+const EventEmiter = require('events');
 const MigrateModel = require('./migrateModel');
 
-class Migrate {
+class Migrate extends EventEmiter {
     /**
      * @param {Rethink} rethink
      * @param {MigrateFiles} migrateFiles
@@ -9,6 +10,7 @@ class Migrate {
      * @param {MigrateDao} migrateDao
      */
     constructor(rethink, migrateFiles, migrateVersion, migrateDao) {
+        super();
         this.rethink = rethink;
         this.migrateFiles = migrateFiles;
         this.migrateVersion = migrateVersion;
@@ -34,7 +36,7 @@ class Migrate {
     consumeQueue() {
         const file = _.first(this.migrateQueue);
         if (_.isUndefined(file)) {
-            this.rethink.closeConnection();
+            this.emit(Migrate.EVENT_END_MIGRATION());
             return;
         }
         console.info('starting migration ' + file.name);
@@ -56,6 +58,10 @@ class Migrate {
         console.info('finished migration ' + file.name);
 
         this.consumeQueue();
+    }
+
+    static EVENT_END_MIGRATION() {
+        return 'EVENT_END_MIGRATION';
     }
 }
 
