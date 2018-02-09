@@ -43,6 +43,17 @@ class Rethink {
             return db.expr(tablesName).difference(dbTables).forEach(missingTable => db.tableCreate(missingTable));
         }).run();
     }
+
+    /**
+     * @param tableName
+     * @param data
+     */
+    insertWhenTableIsEmpty(tableName, data) {
+        return this.getReQL()
+            .table(tableName)
+            .isEmpty()
+            .branch(this.getReQL().table(tableName).insert(data), true).run();
+    }
 }
 
 module.exports = Rethink;
