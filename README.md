@@ -144,6 +144,7 @@ getReQl() | | Returns rethinkdbdash object.
 closeConnection() | | Closes connection to database.
 createDatabase(databaseName) | {String} databaseName | Creates database based on given name.
 createMissingTables(tablesName) | {Array} tablesName | Creates tables based on given table names.
+insertWhenTableIsEmpty(tableName, data) | {String} tableName, {String} data | Insert data to table.
 
 ### License
 [MIT License](./LICENSE)
