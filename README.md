@@ -1,5 +1,5 @@
 # rethinkdb-migration
-
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![Build Status](https://travis-ci.org/FutureProcessing/rethinkdb-migration.svg?branch=master)](https://travis-ci.org/FutureProcessing/rethinkdb-migration)
 
 RethinkDB migration tool allows you to handle database migration for your Node application.
@@ -144,3 +144,7 @@ getReQl() | | Returns rethinkdbdash object.
 closeConnection() | | Closes connection to database.
 createDatabase(databaseName) | {String} databaseName | Creates database based on given name.
 createMissingTables(tablesName) | {Array} tablesName | Creates tables based on given table names.
+insertWhenTableIsEmpty(tableName, data) | {String} tableName, {String} data | Insert data to table.
+
+### License
+[MIT License](./LICENSE)
