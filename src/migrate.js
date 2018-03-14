@@ -24,6 +24,7 @@ class Migrate extends EventEmiter {
 
         _.forEach(this.migrateFiles.getList(), function (file) {
             if (migrateVersion.compare(file.name) !== 1) {
+                console.info(`Migration ${file.name} already done.`)
                 return;
             }
 
@@ -40,8 +41,7 @@ class Migrate extends EventEmiter {
             return Promise.reject(Error('Migration stats exists'));
         }
 
-        const migrateModel = new MigrateModel();
-        migrateModel
+        const migrateModel = new MigrateModel()
             .setVersion(this.migrateVersion.getVersionFromString(file.name))
             .setFileName(file.name)
             .setDate(new Date());

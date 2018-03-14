@@ -22,14 +22,18 @@ class MigrateFiles {
         return _.sortBy(_.concat(this.getDirFiles(corePath), this.getDirFiles(implementationPath)), ['name']);
     }
 
-    getDirFiles(path) {
+    getSortedList(path) {
+        return _.sortBy(this.getDirFiles(this.path + path, true), ['name']);
+    }
+
+    getDirFiles(path, noPattern) {
         if (_.isEmpty(path)) {
             return [];
         }
 
         const filePattern = this.filePattern;
         const list = _.filter(fs.readdirSync(path), file => {
-            return filePattern.test(file);
+            return noPattern || filePattern.test(file);
         });
 
         return _.map(list, fileName => {
