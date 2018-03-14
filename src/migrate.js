@@ -24,7 +24,7 @@ class Migrate extends EventEmiter {
 
         _.forEach(this.migrateFiles.getList(), function (file) {
             if (migrateVersion.compare(file.name) !== 1) {
-                console.info(`Migration ${file.name} already done.`)
+                console.info(`Migration ${file.name} already done.`);
                 return;
             }
 

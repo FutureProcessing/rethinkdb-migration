@@ -2,10 +2,6 @@ const _ = require('lodash');
 const EventEmiter = require('events');
 
 class MigrateWrapperCore extends EventEmiter {
-    constructor() {
-        super();
-    }
-
     up() {
         const sortedList = this.migrateFiles.getSortedList(this.path);
         this.migrateQueue.push(...sortedList);
