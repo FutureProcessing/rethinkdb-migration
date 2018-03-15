@@ -1,7 +1,7 @@
 const _ = require('lodash');
 const EventEmiter = require('events');
 
-class MigrateWrapperCore extends EventEmiter {
+class TaskRunner extends EventEmiter {
     up() {
         const sortedList = this.migrateFiles.getSortedList(this.path);
         this.migrateQueue.push(...sortedList);
@@ -11,7 +11,7 @@ class MigrateWrapperCore extends EventEmiter {
     consumeQueue() {
         const file = _.first(this.migrateQueue);
         if (_.isUndefined(file)) {
-            this.emit(this.endEvent);
+            this.emit(this.END_EVENT);
             return;
         }
         console.info(`starting wrapping migration script ${file.name}`);
@@ -28,4 +28,4 @@ class MigrateWrapperCore extends EventEmiter {
     }
 }
 
-module.exports = MigrateWrapperCore;
+module.exports = TaskRunner;

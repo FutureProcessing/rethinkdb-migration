@@ -1,17 +1,20 @@
-const MigrateWrapperCore = require('./migrateWrapperCore');
+const TaskRunner = require('./taskRunner');
 
-class PreMigrate extends MigrateWrapperCore {
+class PreMigrate extends TaskRunner {
     /**
      * @param {Rethink} rethink
      * @param {MigrateFiles} migrateFiles
      */
     constructor(rethink, migrateFiles) {
         super();
-        this.endEvent = 'EVENT_END_PRE_MIGRATION';
         this.path = '/pre';
         this.rethink = rethink;
         this.migrateFiles = migrateFiles;
         this.migrateQueue = [];
+    }
+
+    get END_EVENT() {
+        return 'EVENT_END_PRE_MIGRATION';
     }
 }
 

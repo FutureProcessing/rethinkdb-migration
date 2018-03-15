@@ -77,10 +77,10 @@ async function initMigrate(config, isSetup) {
             console.log('added migration stats to existing database');
             rethink.closeConnection();
         } else {
-            postMigrate.on(postMigrate.endEvent, function () {
+            postMigrate.on(postMigrate.END_EVENT, function () {
                 rethink.closeConnection();
             });
-            preMigrate.on(preMigrate.endEvent, function() {
+            preMigrate.on(preMigrate.END_EVENT, function() {
                 migrate.up();
             });
             migrate.on(Migrate.EVENT_END_MIGRATION(), function() {
