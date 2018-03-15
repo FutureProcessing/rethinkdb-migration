@@ -5,6 +5,8 @@ const RethinkConnectionParams = require('./src/rethinkConnectionParams');
 const Rethink = require('./src/rethink');
 const MigrateFiles = require('./src/migrateFiles');
 const Migrate = require('./src/migrate');
+const PreMigrate = require('./src/preMigrate');
+const PostMigrate = require('./src/postMigrate');
 const MigrateDao = require('./src/migrateDao');
 const MigrateVersion = require('./src/migrateVersion');
 const configEnvFactory = require('./src/configEnvFactiory');
@@ -67,17 +69,25 @@ async function initMigrate(config, isSetup) {
         const migrateVersion = new MigrateVersion(version, REGEX_VERSION);
 
         const migrate = new Migrate(rethink, migrateFiles, migrateVersion, migrateDao);
+        const preMigrate = new PreMigrate(rethink, migrateFiles);
+        const postMigrate = new PostMigrate(rethink, migrateFiles);
 
         if (isSetup) {
             await migrate.setup();
             console.log('added migration stats to existing database');
             rethink.closeConnection();
         } else {
-            migrate.on(Migrate.EVENT_END_MIGRATION(), function () {
+            postMigrate.on(postMigrate.END_EVENT, function () {
                 rethink.closeConnection();
             });
+            preMigrate.on(preMigrate.END_EVENT, function() {
+                migrate.up();
+            });
+            migrate.on(Migrate.EVENT_END_MIGRATION(), function() {
+                postMigrate.up();
+            });
 
-            migrate.up();
+            preMigrate.up();
         }
     }
     catch (error) {
