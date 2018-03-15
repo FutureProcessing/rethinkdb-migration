@@ -136,6 +136,28 @@ In table **toolRethingDBMigrate** you can see migration history.
 }
 ```
 
+#### Pre and Post scripts
+
+You may setup some scripts that will be run before and after migrations. This is seldom helpful on AT environments when you need to clear database, insert test data, migrate, and dump data again.
+
+Just put scripts that needs to be run **before** migrations in `migrate/pre` sorted alphabetically f.ex: 
+```
+./migrate/pre/001_truncate_tables.js
+./migrate/pre/002_insert_test_data.js
+```
+and scripts that needs to be run **after** migrations in folder `migrate/post`:
+```
+./migrate/post/001_dump_tables.js
+```
+**IMPORTANT**: scripts must expose function 
+```
+/**
+ * @param {Rethink} rethinkRef
+ * @param {Migrate} migrate;
+ */
+async function up(rethinkRef, migrate)
+``` 
+
 #### Helpers
 
 Method | Parameters type | Description
