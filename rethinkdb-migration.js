@@ -91,6 +91,7 @@ async function initMigrate(config, isSetup) {
         }
     }
     catch (error) {
+        process.exitCode = 1;
         console.error(error.message);
         rethink.closeConnection();
     }
