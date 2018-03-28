@@ -36,11 +36,12 @@ describe('Migrate files', () => {
             }
             return [];
         });
-        sinon.stub(fs, 'existsSync').callsFake(()=> true);
+        sinon.stub(fs, 'existsSync').callsFake(() => true);
     });
 
     after(() => {
         fs.readdirSync.restore();
+        fs.existsSync.restore();
     });
 
     // then
