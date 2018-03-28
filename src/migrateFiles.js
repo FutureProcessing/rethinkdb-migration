@@ -27,7 +27,7 @@ class MigrateFiles {
     }
 
     getDirFiles(path, noPattern) {
-        if (_.isEmpty(path)) {
+        if (_.isEmpty(path) || !fs.existsSync(path)) {
             return [];
         }
 
