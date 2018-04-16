@@ -13,17 +13,18 @@ class MigrateFiles {
         this.path = path;
         this.implementation = implementation;
         this.filePattern = filePattern;
+        this.corePath = this.path + '/' + DIR_CORE;
+        this.implementationPath = this.path + '/' + this.implementation;
     }
 
     getList() {
-        const corePath = this.path + '/' + DIR_CORE;
-        const implementationPath = this.path + '/' + this.implementation;
-
-        return _.sortBy(_.concat(this.getDirFiles(corePath), this.getDirFiles(implementationPath)), ['name']);
+        return _.sortBy(_.concat(this.getDirFiles(this.corePath),
+            this.getDirFiles(this.implementationPath)), ['name']);
     }
 
     getSortedList(path) {
-        return _.sortBy(this.getDirFiles(this.path + path, true), ['name']);
+        return _.sortBy(_.concat(this.getDirFiles(this.corePath + path),
+            this.getDirFiles(this.implementationPath + path, true)), ['name']);
     }
 
     getDirFiles(path, noPattern) {
@@ -32,9 +33,7 @@ class MigrateFiles {
         }
 
         const filePattern = this.filePattern;
-        const list = _.filter(fs.readdirSync(path), file => {
-            return noPattern || filePattern.test(file);
-        });
+        const list = _.filter(fs.readdirSync(path), file => noPattern || filePattern.test(file));
 
         return _.map(list, fileName => {
             return {
