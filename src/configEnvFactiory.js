@@ -9,7 +9,8 @@ function configEnvFactory() {
         process.env.TRM_DB_NAME,
         process.env.TRM_DB_TABLE,
         process.env.TRM_DIR_MIGRATE,
-        process.env.TRM_DIR_IMPLEMENTATION
+        process.env.TRM_DIR_IMPLEMENTATION,
+        process.env.TIMEOUT
     );
 }
 

@@ -1,5 +1,5 @@
 class Config {
-    constructor(dbHost, dbPort, dbUser, dbPass, dbName, dbTable, dirMigrate, dirImpementation) {
+    constructor(dbHost, dbPort, dbUser, dbPass, dbName, dbTable, dirMigrate, dirImpementation, timeout) {
         this.dbHost = dbHost;
         this.dbPort = dbPort;
         this.dbUser = dbUser;
@@ -8,6 +8,7 @@ class Config {
         this.dbTable = dbTable;
         this.dirMigrate = dirMigrate;
         this.dirImplementation = dirImpementation;
+        this.timeout = timeout || 60000;
     }
 
     getDbHost() {
@@ -40,6 +41,10 @@ class Config {
 
     getDirImplementation() {
         return this.dirImplementation;
+    }
+
+    getTimeout() {
+        return this.timeout;
     }
 }
 

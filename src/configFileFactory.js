@@ -10,7 +10,8 @@ function configFileFactory(file) {
         configFile.DB_NAME,
         configFile.DB_TABLE,
         configFile.DIR_MIGRATE,
-        configFile.DIR_IMPLEMENTATION
+        configFile.DIR_IMPLEMENTATION,
+        configFile.TIMEOUT
     );
 }
 

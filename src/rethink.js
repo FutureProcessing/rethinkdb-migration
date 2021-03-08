@@ -20,8 +20,8 @@ class Rethink {
         this.getReQL().getPoolMaster().drain();
     }
 
-    waitFor(table) {
-        return this.getReQL().table(table).wait({timeout: 60000});
+    waitFor(table, timeout) {
+        return this.getReQL().table(table).wait({timeout});
     }
 
     /**
