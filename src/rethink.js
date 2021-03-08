@@ -21,7 +21,7 @@ class Rethink {
     }
 
     waitFor(table) {
-        return this.getReQL().table(table).wait();
+        return this.getReQL().table(table).wait({timeout: 60000});
     }
 
     /**
