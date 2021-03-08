@@ -6,5 +6,6 @@
   "DB_NAME": "rethinkMigrateTest",
   "DB_TABLE": "toolRethingDBMigrate",
   "DIR_MIGRATE": "./migrate",
-  "DIR_IMPLEMENTATION": "stage"
+  "DIR_IMPLEMENTATION": "stage",
+  "TIMEOUT": 60000
 }

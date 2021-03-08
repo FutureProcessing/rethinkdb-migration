@@ -59,6 +59,12 @@ async function initMigrate(config, isSetup) {
         await rethink.createDatabase(config.getDbName());
         await rethink.createMissingTables([config.getDbTable()]);
 
+        const result = await rethink.waitFor(config.getDbTable(), config.getTimeout());
+
+        if (!result.ready) {
+            process.exit(1);
+        }
+
         const migrateDao = new MigrateDao(rethink, config.getDbTable());
 
         /** @var MigrateModel model */
